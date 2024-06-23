@@ -3,6 +3,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import images from '../../constants/images';
 import './Navbar.css';
+import { useNavigate } from 'react-router-dom'
 import { useState,useEffect } from 'react';
 
 const Navbar = () => {
@@ -19,6 +20,12 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const navigate = useNavigate();
+  const handleOrders = () => {
+    navigate("/booking-form")
+  }
+
   return (
     <nav className={`app__navbar ${isScrolled ? 'navbar-scrolled' : ''}`}
 >
@@ -36,7 +43,7 @@ const Navbar = () => {
       <div className="app__navbar-login">
         <a href="#login" className="p__opensans">Log In / Registration</a>
         <div />
-        <a href="/" className="p__opensans">Book Table</a>
+        <p className="p__opensans"  onClick={handleOrders}>Book Table</p>
       </div>
       <div className="app__navbar-smallscreen">
         <GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />
